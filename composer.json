@@ -1,0 +1,15 @@
+{
+    "name": "xavier-iv/headless-model",
+    "description": "A headless model for Laravel",
+    "type": "library",
+    "require": {
+        "php": "^7.1.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamad Zafranudin",
+            "email": "mohd.zafranudin@gmail.com"
+        }
+    ]
+}
