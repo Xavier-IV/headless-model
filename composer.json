@@ -11,5 +11,10 @@
             "name": "Mohamad Zafranudin",
             "email": "mohd.zafranudin@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "XavierIV\\HeadlessModel": "src/"
+        }
+    }
 }
