@@ -21,10 +21,17 @@ class Model implements ConnectorInterface
     protected $resource_collection_name = '';
 
     public $all_data = [];
+    public $force = false;
 
-    public function all(){
+    public function all()
+    {
         $this->query = '?' . http_build_query($this->body);
-        $this->endpoint .= $this->intention . $this->query;
+
+        // If session is not forcing retrieving all data, use original endpoint
+        if (!$this->force) {
+            $this->endpoint .= $this->intention . $this->query;
+        }
+
         $result = $this->resource_collection_name::make(collect($this->get()))->resolve();
         return (object)$result;
     }
@@ -39,24 +46,32 @@ class Model implements ConnectorInterface
         return (object)$collections;
     }
 
-    function retrieveNext($next = ''){
-        if(!empty($next)){
+    function retrieveNext($next = '')
+    {
+
+
+        if (!empty($next)) {
             $this->endpoint = $next;
         }
         $collection = $this->limit(50)->all();
-        $next_url = isset($collection->paging->next) ? $collection->paging->next : null;
 
-        foreach($collection->data as $collection) {
+        // Set for to true to disallow endless loop of endpoint
+        $this->force = true;
+
+        $next_url = isset($collection->paging->next) ? $collection->paging->next : null;
+        foreach ($collection->data as $collection) {
             array_push($this->all_data, $collection);
         }
 
-        if(isset($next_url)){
-            $this->retrieveNext($next);
-        }
+        if (isset($next_url)) {
+            $this->retrieveNext($next_url);
 
+        }
         return $this->all_data;
     }
-    public function find($id) {
+
+    public function find($id)
+    {
         $this->query = "/$id";
         $this->endpoint .= $this->intention . $this->query;
         $result = $this->resource_name::make(collect($this->get()->data))->resolve();
