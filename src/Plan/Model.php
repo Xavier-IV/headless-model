@@ -32,7 +32,7 @@ class Model implements ConnectorInterface
             $this->endpoint .= $this->intention . $this->query;
         }
 
-        $result = $this->resource_collection_name::make(collect($this->get()))->resolve();
+        $result = $this->get();
         return (object)$result;
     }
 
@@ -42,7 +42,7 @@ class Model implements ConnectorInterface
         $data = (object)[
             'data' => $bulk_result
         ];
-        $collections = $this->resource_collection_name::make(collect($data))->resolve();
+        $collections = $data;
         return (object)$collections;
     }
 
