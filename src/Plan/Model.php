@@ -74,7 +74,11 @@ class Model implements ConnectorInterface
     {
         $this->query = "/$id";
         $this->endpoint .= $this->intention . $this->query;
-        $result = $this->resource_name::make(collect($this->get()->data))->resolve();
+        if(!empty($this->get()->data)){
+            $result = $this->get()->data;
+            return (object)$result;
+        }
+        $result = $this->get();
         return (object)$result;
     }
 
