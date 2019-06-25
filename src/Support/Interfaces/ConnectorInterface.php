@@ -10,12 +10,12 @@ namespace XavierIV\HeadlessModel\Support\Interfaces;
 
 interface ConnectorInterface
 {
-    public function all();
+    function get();
 
-    public function find($id);
+    function delete();
 
-    public function destroy($id);
+    function post();
 
-    public function create();
+    function put();
 
 }

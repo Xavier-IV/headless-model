@@ -9,16 +9,14 @@
 namespace XavierIV\HeadlessModel\Plan;
 
 use XavierIV\HeadlessModel\Support\Connector\RestSocket;
-use XavierIV\HeadlessModel\Support\Interfaces\ConnectorInterface;
+use XavierIV\HeadlessModel\Support\Interfaces\ModelInterface;
 use XavierIV\HeadlessModel\Support\RestBuilder;
 
-class Model implements ConnectorInterface
+class Model implements ModelInterface
 {
     use RestSocket, RestBuilder;
 
     public $body;
-    protected $resource_name = '';
-    protected $resource_collection_name = '';
 
     public $all_data = [];
     public $force = false;

@@ -11,5 +11,11 @@ namespace XavierIV\HeadlessModel\Support\Interfaces;
 
 interface ModelInterface
 {
+    public function all();
 
+    public function find($id);
+
+    public function destroy($id);
+
+    public function create();
 }
