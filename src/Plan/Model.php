@@ -86,21 +86,24 @@ class Model implements ModelInterface
         $this->query = "/$id";
         $this->endpoint .= $this->intention . $this->query;
         $result = $this->delete();
-        return $result;
+        return json_decode($result->response);
     }
 
-    public function create()
+    public function create($body = null)
     {
         $this->endpoint .= $this->intention;
+        foreach($body as $key => $value){
+            $this->body[$key] = $value;
+        }
         $result = $this->post();
-        return $result;
+        return json_decode($result->response);
     }
 
     public function update()
     {
         $this->endpoint .= $this->intention;
         $result = $this->put();
-        return $result;
+        return json_decode($result->response);
     }
 
 }
