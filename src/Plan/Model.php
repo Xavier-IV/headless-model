@@ -31,7 +31,7 @@ class Model implements ModelInterface
         }
 
         $result = $this->get();
-        return (object)$result;
+        return json_decode($result->response);
     }
 
     public function forceAll()
@@ -77,7 +77,7 @@ class Model implements ModelInterface
             return (object)$result;
         }
         $result = $this->get();
-        return (object)$result;
+        return json_decode($result->response);
     }
 
 
