@@ -20,6 +20,7 @@ class Model implements ModelInterface
 
     public $all_data = [];
     public $force = false;
+    public $result;
 
     public function all()
     {
@@ -30,8 +31,9 @@ class Model implements ModelInterface
             $this->endpoint .= $this->intention . $this->query;
         }
 
-        $result = $this->get();
-        return json_decode($result->response);
+        $this->result = $this->get()->response;
+        $this->result = json_decode($this->result);
+        return $this;
     }
 
     public function forceAll()
@@ -76,8 +78,9 @@ class Model implements ModelInterface
             $result = $this->get()->data;
             return (object)$result;
         }
-        $result = $this->get();
-        return json_decode($result->response);
+        $this->result = $this->get()->response;
+        $this->result = json_decode($this->result);
+        return $this;
     }
 
 
@@ -85,8 +88,9 @@ class Model implements ModelInterface
     {
         $this->query = "/$id";
         $this->endpoint .= $this->intention . $this->query;
-        $result = $this->delete();
-        return json_decode($result->response);
+        $this->result = $this->delete()->response;
+        $this->result = json_decode($this->result);
+        return $this;
     }
 
     public function create($body = null)
@@ -95,15 +99,17 @@ class Model implements ModelInterface
         foreach($body as $key => $value){
             $this->body[$key] = $value;
         }
-        $result = $this->post();
-        return json_decode($result->response);
+        $this->result = $this->post()->response;
+        $this->result = json_decode($this->result);
+        return $this;
     }
 
     public function update()
     {
         $this->endpoint .= $this->intention;
-        $result = $this->put();
-        return json_decode($result->response);
+        $this->result = $this->put()->response;
+        $this->result = json_decode($this->result);
+        return $this;
     }
 
 }
