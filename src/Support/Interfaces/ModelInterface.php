@@ -17,5 +17,7 @@ interface ModelInterface
 
     public function destroy($id);
 
+    public function update($id);
+
     public function create($body = null);
 }
