@@ -104,9 +104,10 @@ class Model implements ModelInterface
         return $this;
     }
 
-    public function update()
+    public function update($id)
     {
-        $this->endpoint .= $this->intention;
+        $this->query = "/$id";
+        $this->endpoint .= $this->intention . $this->query;
         $this->result = $this->put()->response;
         $this->result = json_decode($this->result);
         return $this;
