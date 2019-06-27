@@ -48,6 +48,17 @@ Then to retrieve your user with ID = 1.
 
     $headless->create(['name' => 'Sam']);
     
+    
+## 💕 Supported builder
+
+    $headless->sort('updated_at')
+             ->all();
+             
+    $headless->order($order)->all();
+    
+    $headless->limit(10)->all(); 
+    
+    
 ## 🔥 Advanced functions
 
 Although quite rare, but we found that we need to store all of the data and usually we will
@@ -65,3 +76,9 @@ consuming.
 Kindly submit and issue or bugfix found the the issue section.
 
 https://github.com/Xavier-IV/headless-model/issues 
+
+## 🌱 Enhancement
+
+Currently this project has been adjusted to cater for our internal project, but
+we intend to increase its reusability for you! More update will coming,
+especially in the RestSocket and RestBuilder class.
