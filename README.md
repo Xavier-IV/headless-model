@@ -51,6 +51,8 @@ Then to retrieve your user with ID = 1.
 
     $headless->create(['name' => 'Sam']);
     
+    $headless->update($id, ['name' => 'Samuel']);
+    
     
 ## 💕 Supported builder
 
