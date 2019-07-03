@@ -1,6 +1,9 @@
+
 # 🚀 Headless Model
 
 An artificial model package for your third-party API.
+
+[![Build Status](https://travis-ci.com/Xavier-IV/headless-model.svg?branch=master)](https://travis-ci.com/Xavier-IV/headless-model)
 
 ## 💡 Usage
 
