@@ -26,7 +26,6 @@ trait RestSocket
     protected $curl;
     protected $query;
 
-    protected $application_id;
     protected $content_type;
 
     public function __construct()
@@ -36,8 +35,6 @@ trait RestSocket
         } catch (\ErrorException $e) {
         }
 
-        $this->application_id = env('BRAND_ID');
-
         $this->initializer();
         $this->authenticate();
 
@@ -45,14 +42,7 @@ trait RestSocket
 
     private function initializer(){
         $this->body = new \stdClass();
-
-        $this->body = [
-            'brand_id' => $this->application_id,
-            'status' => 1,
-            'content_type' => $this->content_type
-        ];
-
-        $this->endpoint = env("AHC_URL");
+        $this->endpoint = getenv("HEADLESS_MODEL_URL");
     }
 
     private function get()
@@ -85,6 +75,6 @@ trait RestSocket
         $this->curl->setOpt(CURLOPT_HEADER, false);
         $this->curl->setOpt(CURLOPT_RETURNTRANSFER, true);
         $this->curl->setHeader('Content-Type', 'application/json');
-        $this->curl->setHeader('Authorization', 'Bearer ' . env('AHC_ACCESS_TOKEN'));
+        $this->curl->setHeader('Authorization', 'Bearer ' . getenv('HEADLESS_MODEL_TOKEN'));
     }
 }

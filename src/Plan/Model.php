@@ -48,8 +48,6 @@ class Model implements ModelInterface
 
     function retrieveNext($next = '')
     {
-
-
         if (!empty($next)) {
             $this->endpoint = $next;
         }
@@ -104,10 +102,13 @@ class Model implements ModelInterface
         return $this;
     }
 
-    public function update($id)
+    public function update($id, array $body)
     {
         $this->query = "/$id";
         $this->endpoint .= $this->intention . $this->query;
+        foreach($body as $key => $value){
+            $this->body[$key] = $value;
+        }
         $this->result = $this->put()->response;
         $this->result = json_decode($this->result);
         return $this;
